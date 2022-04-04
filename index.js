@@ -9,20 +9,29 @@ const cors = require('cors')
 const app = express()
 const DB_USER = 'vitor'
 const DB_PASSWORD = encodeURIComponent('071099')
-const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.zds8i.mongodb.net/vunesp_fivem?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.zds8i.mongodb.net/vunesp?retryWrites=true&w=majority`;
 
-const Person = require('./models/Person')
-
+"mongodb+srv://vitor:071099@cluster0.zds8i.mongodb.net/vunesp?retryWrites=true&w=majority"
 
 app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
+
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+
+const PersonRoutes = require('./routes/personRoutes')
+app.use('/person',PersonRoutes)
+
 
 // rota inicial / endpoint
 app.get('/', (req, res) => {
 
     res.json({ message: 'Expressando minha arte' })
 })
+
 
 mongoose
     .connect(uri)
