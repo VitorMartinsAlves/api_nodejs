@@ -1,10 +1,15 @@
 const mongoose = require('mongoose')
 
 const Person = mongoose.model('Person', {
-    concurso: String,
-    vagas: Number,
+    type: String,
+    title: String,
+    desc: String,
+    estado: String,
+    vaga: String,
+    escolaridade: String,
+    numVagas: String,
     remu: Number,
-    isClosed: Boolean
+    status: Boolean
 
 })
 

@@ -1,20 +1,34 @@
 const router = require('express').Router()
+const { route } = require('express/lib/application')
 const req = require('express/lib/request')
 const Person = require('../models/Person')
 
 router.post('/', async (req, res) => {
 
-    const { concurso, remu, vagas, isClosed } = req.body
-    if (!concurso) {
+    const { type,
+        title,
+        desc,
+        estado,
+        vaga,
+        escolaridade,
+        numVagas,
+        remu,
+        status } = req.body
+    if (!title) {
 
         res.status(422).json({ error: "O titulo é obrigatorio" })
     }
 
     const person = {
-        concurso,
+        type,
+        title,
+        desc,
+        estado,
+        vaga,
+        escolaridade,
+        numVagas,
         remu,
-        vagas,
-        isClosed
+        status
     }
 
     try {
@@ -33,7 +47,7 @@ router.get("/", async (req, res) => {
     try {
         //Volta todos os valores da database
         const peopple = await Person.find()
-        
+
         if (!peopple) {
             res.send({ message: "Erro 404" })
             return
@@ -45,7 +59,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-
+// Mostra somente o ID selecionado 
 router.get("/:id", async (req, res) => {
     const id = req.params.id
 
@@ -54,7 +68,7 @@ router.get("/:id", async (req, res) => {
 
 
         const peopple = await Person.find({ _id: id })
-
+        console.log("dont found")
         if (!peopple) {
             res.send({ msg: "O usuário não foi encontrado!" })
             return
@@ -65,4 +79,47 @@ router.get("/:id", async (req, res) => {
         res.status(500).json({ error: error })
     }
 })
+
+// Atualiza somente o ID selecionado 
+router.patch("/:id", async (req, res) => {
+    const id = req.params.id
+
+    const { concurso, remu, vagas, isClosed } = req.body
+
+    const person = { concurso, remu, vagas, isClosed }
+
+
+    try {
+        const updatePerson = await Person.updateOne({ _id: id }, person)
+
+        if (updatePerson === 0) {
+            res.send({ message: "Usuário não encontrado!" })
+        }
+
+        res.status(200).json(person)
+    } catch {
+        res.status(500).json({ error: error })
+
+    }
+})
+// Delete o curso pelo ID 
+router.delete("/:id", async (req, res) => {
+
+    const id = req.params.id
+    const peopple = await Person.find({ _id: id })
+
+    if (!peopple) {
+        res.send({ msg: "O usuário não foi encontrado!" })
+        return
+    }
+
+    try {
+        await Person.deleteOne({ _id: id })
+        res.send(200).json({ message: "Usuário deletado" })
+    } catch {
+        res.status(500).json({ error: error })
+
+    }
+})
+
 module.exports = router
