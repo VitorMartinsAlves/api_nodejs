@@ -84,9 +84,23 @@ router.get("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
     const id = req.params.id
 
-    const { concurso, remu, vagas, isClosed } = req.body
+    const { title,
+        desc,
+        estado,
+        vaga,
+        escolaridade,
+        numVagas,
+        remu,
+        status  } = req.body
 
-    const person = { concurso, remu, vagas, isClosed }
+    const person = { title,
+        desc,
+        estado,
+        vaga,
+        escolaridade,
+        numVagas,
+        remu,
+        status  }
 
 
     try {
