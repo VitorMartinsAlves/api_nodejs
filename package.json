@@ -2,10 +2,13 @@
   "name": "vunesp_api",
   "version": "1.0.0",
   "description": "Api para o website cover da vunesp.",
-  "main": "index.js localhost 8080",
+  "main": "index.js localhost 8443",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./index.js"
+  },
+  "engines": {
+    "node":"16.15.0"
   },
   "author": "",
   "license": "ISC",
