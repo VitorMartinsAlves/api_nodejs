@@ -38,6 +38,6 @@ mongoose
     .connect(uri)
     .then(() => {
         console.log('Conetado')
-        app.listen(8443)
+        app.listen(3000)
     })
     .catch((err) => console.log(err))
