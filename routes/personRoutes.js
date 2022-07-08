@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
         numVagas,
         remu,
         status } = req.body
-    if (!title) {
+    if (title === undefined || title === null) {
 
         res.status(422).json({ error: "O titulo é obrigatorio" })
     }
@@ -91,16 +91,18 @@ router.patch("/:id", async (req, res) => {
         escolaridade,
         numVagas,
         remu,
-        status  } = req.body
+        status } = req.body
 
-    const person = { title,
+    const person = {
+        title,
         desc,
         estado,
         vaga,
         escolaridade,
         numVagas,
         remu,
-        status  }
+        status
+    }
 
 
     try {
