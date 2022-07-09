@@ -14,10 +14,10 @@ router.post('/', async (req, res) => {
         numVagas,
         remu,
         status } = req.body
-    if (title === undefined || title === null) {
+    // if (title === undefined || title === null) {
 
-        res.status(422).json({ error: "O titulo é obrigatorio" })
-    }
+    //     res.status(422).json({ error: "O titulo é obrigatorio" })
+    // }
 
     const person = {
         type,
