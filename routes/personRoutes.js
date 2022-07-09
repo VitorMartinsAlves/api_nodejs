@@ -132,7 +132,7 @@ router.delete("/:id", async (req, res) => {
     try {
         await Person.deleteOne({ _id: id })
         res.send(200).json({ message: "Usuário deletado" })
-    } catch {
+    } catch (error){
         res.status(500).json({ error: error })
 
     }
