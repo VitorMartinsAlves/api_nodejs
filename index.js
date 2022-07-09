@@ -7,7 +7,11 @@ const collname = "concursos"
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
+var router = express.Router();
 
+router.get('/',function(req,res,next){
+    res.status(200).send("hi, it Works")
+});
 
 const DB_USER = 'vitor'
 const DB_PASSWORD = encodeURIComponent('071099')
@@ -38,6 +42,7 @@ mongoose
     .connect(uri)
     .then(() => {
         console.log('Conetado')
-        app.listen(3000)
+        app.listen(process.env.PORT || 3000)
+        console.log(process.env.PORT)
     })
     .catch((err) => console.log(err))
