@@ -5,31 +5,13 @@ const Person = require('../models/Person')
 
 router.post('/', async (req, res) => {
 
-    const { type,
-        title,
-        desc,
-        estado,
-        vaga,
-        escolaridade,
-        numVagas,
-        remu,
-        status } = req.body
+    const { type, title, desc, estado, vaga, escolaridade, numVagas, remu, status } = req.body
     // if (title === undefined || title === null) {
 
     //     res.status(422).json({ error: "O titulo é obrigatorio" })
     // }
 
-    const person = {
-        type,
-        title,
-        desc,
-        estado,
-        vaga,
-        escolaridade,
-        numVagas,
-        remu,
-        status
-    }
+    const person = { type, title, desc, estado, vaga, escolaridade, numVagas, remu, status}
 
     try {
         //criando dados
@@ -132,7 +114,7 @@ router.delete("/:id", async (req, res) => {
     try {
         await Person.deleteOne({ _id: id })
         // res.send(200).json({ message: "Usuário deletado" })
-    } catch (error){
+    } catch (error) {
         res.status(500).json({ error: error })
 
     }

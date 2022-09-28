@@ -5,17 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js"
+    "start": "nodemon ."
   },
   "engines": {
-    "node":"16.15.0"
+    "node": "16.15.0"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
+    "discord.js": "^14.0.1",
     "dotenv": "^16.0.0",
+    "easytimer.js": "^4.5.3",
     "express": "^4.18.1",
     "mongodb": "^4.4.1",
     "mongoose": "^6.4.3",

@@ -8,7 +8,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 var router = express.Router();
-
+// fez funcionar  e para o estado
 router.get('/',function(req,res,next){
     res.status(200).send("hi, it Works")
 });
@@ -46,3 +46,8 @@ mongoose
         console.log(process.env.PORT)
     })
     .catch((err) => console.log(err))
+
+
+
+
+    
